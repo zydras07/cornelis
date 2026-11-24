@@ -7,6 +7,7 @@ packages:
 
 extra-deps:
 - levenshtein-0.2.1.0
+- nvim-hs-2.3.2.6@sha256:58c0dfe40f842d90bc86fff6f7fc9f046766201c6537ffbf91420a6cfe0fc4ff,6676
 
 nix:
   packages: [zlib]

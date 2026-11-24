@@ -205,8 +205,21 @@ getExtmarks b p = do
       pos i = ObjectArray [ ObjectInt $ fromZeroIndexed (p_line vp)
                           , ObjectInt i
                           ]
-  res <- nvim_buf_get_extmarks b ns (pos 0) (pos (-1)) $ M.singleton "details" $ ObjectBool True
-  marks <- fmap catMaybes $ traverse (parseExtmark b) $ V.toList res
+  -- res <- nvim_buf_get_extmarks b ns (pos 0) (pos (-1)) $ M.singleton "details" $ ObjectBool True
+  -- marks <- fmap catMaybes $ traverse (parseExtmark b) $ V.toList res
+  res <- nvim_exec_lua
+          "return vim.api.nvim_buf_get_extmarks(...)"
+          (V.fromList
+            [ toObject b
+            , toObject ns
+            , pos 0
+            , pos (-1)
+            , ObjectMap $ M.singleton (ObjectString "details") (ObjectBool True)
+            ])
+  let raw = case res of
+             ObjectArray xs -> xs
+             _              -> []
+  marks <- fmap catMaybes $ traverse (parseExtmark b) raw
 
   pure $ marks >>= \es ->
     case containsPoint (es_interval es) p of

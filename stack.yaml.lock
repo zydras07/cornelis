@@ -11,6 +11,13 @@ packages:
       size: 527
   original:
     hackage: levenshtein-0.2.1.0
+- completed:
+    hackage: nvim-hs-2.3.2.6@sha256:58c0dfe40f842d90bc86fff6f7fc9f046766201c6537ffbf91420a6cfe0fc4ff,6676
+    pantry-tree:
+      sha256: ce1b9ab4635a3ae2cc4dc1032cff837b7bc74a0bdc827e6031d833347924affb
+      size: 3519
+  original:
+    hackage: nvim-hs-2.3.2.6@sha256:58c0dfe40f842d90bc86fff6f7fc9f046766201c6537ffbf91420a6cfe0fc4ff,6676
 snapshots:
 - completed:
     sha256: 2763632e4c4094ce12f5ae12b22f524cdc6453b6b19007ff164a37fd9d2ea829
