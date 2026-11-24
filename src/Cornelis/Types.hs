@@ -319,6 +319,8 @@ data DisplayInfo
   | WhyInScope Text
   | NormalForm Text
   | Version Text
+  | AutoResult Text
+  | IntroNotFound
   | UnknownDisplayInfo Value
   deriving (Eq, Ord, Show, Generic)
 
@@ -368,6 +370,8 @@ instance FromJSON DisplayInfo where
             (_ :: Text) ->
               pure $ UnknownDisplayInfo v
       "Version" -> Version <$> obj .: "version"
+      "Auto" -> AutoResult <$> obj .: "info"
+      "IntroNotFound" -> pure IntroNotFound
       (_ :: Text) -> pure $ UnknownDisplayInfo v
 
 instance FromJSON Response where

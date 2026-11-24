@@ -179,6 +179,9 @@ prettyGoals (InferredType ty) =
   annotate CornelisTitle "Inferred Type:" <+> prettyType ty
 prettyGoals (WhyInScope msg) = pretty msg
 prettyGoals (NormalForm expr) = pretty expr
+prettyGoals (Version v) = pretty v
+prettyGoals (AutoResult msg) = pretty msg
+prettyGoals IntroNotFound = annotate CornelisWarn "No introduction forms found"
 prettyGoals (DisplayError err) = annotate CornelisError $ pretty err
 prettyGoals (IntroConstructorUnknown constructors) = vsep
   [ annotate CornelisErrorWarning "Don't know which constructor to introduce."
